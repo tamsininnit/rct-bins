@@ -1,0 +1,60 @@
+[project]
+name = "rct-bin-collections"
+version = "0.1.0"
+description = "Unofficial Home Assistant integration for Rhondda Cynon Taf bin collection dates"
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Sarah Tamsin" }]
+requires-python = ">=3.14.2"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+addopts = "--strict-markers"
+
+[tool.coverage.run]
+source = ["custom_components/rct_bin_collections"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+fail_under = 90
+
+[tool.ruff]
+target-version = "py314"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+  "A", "ASYNC", "B", "BLE", "C4", "D", "DTZ", "E", "F", "FLY", "G", "I", "ICN", "INP",
+  "LOG", "N", "PERF", "PGH", "PIE", "PL", "PT", "PTH", "RET", "RSE", "RUF", "S", "SIM",
+  "SLF", "T20", "TID", "TRY", "UP", "W",
+]
+ignore = [
+  "D202",    # blank line after docstring (conflicts with formatter)
+  "D203",    # one-blank-line-before-class (conflicts with D211)
+  "D213",    # multi-line-summary-second-line (conflicts with D212)
+  "PLR0913", # HA callbacks legitimately take many arguments
+  "TRY003",  # descriptive messages on custom exceptions are intended
+  "PLR2004", # magic numbers are fine in HTTP status handling
+  "TID252",  # relative imports within the integration package are the HA convention
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D", "S101", "SLF001", "PLR2004", "INP001", "PLC0415", "PLR0917", "ARG001", "RUF001"]
+
+[tool.ruff.lint.isort]
+force-sort-within-sections = true
+known-first-party = ["custom_components.rct_bin_collections"]
+combine-as-imports = true
+split-on-trailing-comma = false
+
+[tool.mypy]
+python_version = "3.14"
+strict = true
+warn_unreachable = true
+ignore_missing_imports = false
+files = ["custom_components/rct_bin_collections"]
+plugins = []

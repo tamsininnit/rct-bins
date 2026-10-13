@@ -1,0 +1,173 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Find your property",
+        "description": "Enter a postcode in Rhondda Cynon Taf. Collection dates are looked up on the council's website. This integration is unofficial and not affiliated with RCT Council.",
+        "data": {
+          "postcode": "Postcode",
+          "property_name": "Property name",
+          "manual_uprn": "Enter a UPRN instead of choosing from the address list"
+        },
+        "data_description": {
+          "postcode": "For example CF37 1AB. Spaces and capital letters are optional.",
+          "property_name": "A friendly name such as Home or Mum's house. Used to name the device and entities.",
+          "manual_uprn": "Only needed if your address is missing from the council's list."
+        }
+      },
+      "reconfigure": {
+        "title": "Change property",
+        "description": "Enter the postcode of the property this entry should follow. Existing entities and their history are kept.",
+        "data": {
+          "postcode": "Postcode",
+          "manual_uprn": "Enter a UPRN instead of choosing from the address list"
+        },
+        "data_description": {
+          "postcode": "For example CF37 1AB. Spaces and capital letters are optional.",
+          "manual_uprn": "Only needed if your address is missing from the council's list."
+        }
+      },
+      "select_address": {
+        "title": "Choose your address",
+        "description": "The council lists {count} properties for {postcode}. Choose yours.",
+        "data": {
+          "selected_address": "Address"
+        }
+      },
+      "manual_uprn": {
+        "title": "Enter UPRN",
+        "description": "Enter the Unique Property Reference Number (UPRN) for the property at {postcode}. It appears on some council documents and on public UPRN lookup services. The schedule is only accepted if the council confirms the property is at {postcode}.",
+        "data": {
+          "uprn": "UPRN"
+        },
+        "data_description": {
+          "uprn": "Up to 12 digits, for example 100100123456."
+        }
+      }
+    },
+    "error": {
+      "invalid_postcode": "That doesn't look like a UK postcode.",
+      "invalid_uprn": "A UPRN is a number of up to 12 digits.",
+      "postcode_not_found": "The council found no addresses for this postcode. Check it is a Rhondda Cynon Taf postcode.",
+      "property_not_found": "The council does not recognise this property.",
+      "property_mismatch": "The council's record for this UPRN is not at the postcode you entered.",
+      "cannot_connect": "Could not reach the council website. Try again later.",
+      "rate_limited": "The council website asked us to slow down. Wait a few minutes and try again.",
+      "parse_error": "The council website returned a page this integration could not read. The website may have changed; please report it.",
+      "unsupported_response": "The council website returned an unexpected response. Try again later.",
+      "no_collections": "The council has not published any collections for this property.",
+      "no_future_collections": "The council has not published any upcoming collections for this property.",
+      "unknown": "Unexpected error. Check the logs for details."
+    },
+    "abort": {
+      "already_configured": "This property is already set up.",
+      "reconfigure_successful": "The property has been updated."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "RCT Bin Collections options",
+        "data": {
+          "property_name": "Property name",
+          "update_interval": "Check for changes every",
+          "reminder_days": "Reminder window (days)",
+          "included_categories": "Collection types to show"
+        },
+        "data_description": {
+          "update_interval": "Date-based entities still update at midnight regardless of this setting.",
+          "reminder_days": "The \"collection due soon\" sensor turns on when a collection is this many days away or fewer. 0 means today only.",
+          "included_categories": "Hidden types are removed from sensors, reminders and the calendar."
+        }
+      }
+    }
+  },
+  "selector": {
+    "update_interval": {
+      "options": {
+        "6": "6 hours",
+        "12": "12 hours (recommended)",
+        "24": "24 hours"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "collection_today": {
+        "name": "Collection today"
+      },
+      "collection_tomorrow": {
+        "name": "Collection tomorrow"
+      },
+      "collection_due_soon": {
+        "name": "Collection due soon"
+      }
+    },
+    "calendar": {
+      "collections": {
+        "name": "Collections"
+      }
+    },
+    "sensor": {
+      "next_collection": {
+        "name": "Next collection"
+      },
+      "days_until_next_collection": {
+        "name": "Days until next collection"
+      },
+      "collection_summary": {
+        "name": "Collection summary"
+      },
+      "last_successful_update": {
+        "name": "Last successful update"
+      },
+      "general_waste_next_collection": {
+        "name": "General waste next collection"
+      },
+      "recycling_next_collection": {
+        "name": "Recycling next collection"
+      },
+      "food_waste_next_collection": {
+        "name": "Food waste next collection"
+      },
+      "garden_waste_next_collection": {
+        "name": "Garden waste next collection"
+      },
+      "hygiene_next_collection": {
+        "name": "Hygiene waste next collection"
+      },
+      "other_next_collection": {
+        "name": "{category} next collection"
+      }
+    }
+  },
+  "exceptions": {
+    "service_unavailable": {
+      "message": "Could not reach the council website."
+    },
+    "rate_limited": {
+      "message": "The council website asked us to slow down."
+    },
+    "unsupported_response": {
+      "message": "The council website returned an unexpected response."
+    },
+    "parse_error": {
+      "message": "The council website returned a page that could not be read. The website may have changed."
+    },
+    "postcode_not_found": {
+      "message": "The council found no addresses for this postcode."
+    },
+    "property_not_found": {
+      "message": "The council no longer recognises this property."
+    },
+    "property_mismatch": {
+      "message": "The council returned collection dates for a different property. Reconfigure the entry to choose the correct address."
+    },
+    "unknown_error": {
+      "message": "Unexpected error while fetching collection dates."
+    },
+    "unknown_provider": {
+      "message": "Unknown data provider {provider}."
+    }
+  }
+}

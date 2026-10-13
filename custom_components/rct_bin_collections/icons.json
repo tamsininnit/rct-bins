@@ -1,0 +1,33 @@
+{
+  "entity": {
+    "binary_sensor": {
+      "collection_today": {
+        "default": "mdi:trash-can-outline",
+        "state": { "on": "mdi:trash-can-alert" }
+      },
+      "collection_tomorrow": {
+        "default": "mdi:trash-can-outline",
+        "state": { "on": "mdi:trash-can-clock" }
+      },
+      "collection_due_soon": {
+        "default": "mdi:trash-can-outline",
+        "state": { "on": "mdi:bell-ring" }
+      }
+    },
+    "calendar": {
+      "collections": { "default": "mdi:calendar-blank-multiple" }
+    },
+    "sensor": {
+      "next_collection": { "default": "mdi:calendar-arrow-right" },
+      "days_until_next_collection": { "default": "mdi:calendar-clock" },
+      "collection_summary": { "default": "mdi:delete-variant" },
+      "last_successful_update": { "default": "mdi:cloud-check-outline" },
+      "general_waste_next_collection": { "default": "mdi:trash-can" },
+      "recycling_next_collection": { "default": "mdi:recycle" },
+      "food_waste_next_collection": { "default": "mdi:food-apple-outline" },
+      "garden_waste_next_collection": { "default": "mdi:leaf" },
+      "hygiene_next_collection": { "default": "mdi:baby-face-outline" },
+      "other_next_collection": { "default": "mdi:delete-empty" }
+    }
+  }
+}
