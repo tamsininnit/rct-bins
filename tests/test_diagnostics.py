@@ -12,6 +12,8 @@ from pytest_homeassistant_custom_component.components.diagnostics import (
 )
 from pytest_homeassistant_custom_component.typing import ClientSessionGenerator
 
+from custom_components.rct_bin_collections.const import VERSION
+
 from .conftest import UPRN
 
 
@@ -21,7 +23,7 @@ async def test_diagnostics_are_redacted(
     assert await async_setup_component(hass, "diagnostics", {})
     diag = await get_diagnostics_for_config_entry(hass, hass_client, loaded_entry)
 
-    assert diag["integration_version"] == "0.1.0"
+    assert diag["integration_version"] == VERSION
     assert diag["provider"] == "rct_council"
     assert diag["coordinator"]["last_update_success"] is True
     assert diag["coordinator"]["last_http_status"] == 200

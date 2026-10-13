@@ -333,10 +333,30 @@ with no I/O. If the site changes:
 2. Remove addresses, postcodes and UPRNs, and save the result under `tests/fixtures/`.
 3. Update the parser's selectors until `tests/test_providers.py` passes against both the old and new
    fixtures.
-4. Bump the version in `manifest.json` and add a `CHANGELOG.md` entry.
+4. Release a new version (see below).
 
 [`docs/architecture.md`](docs/architecture.md) explains how the pieces fit together, and how to add
 another data provider.
+
+## Releasing a new version
+
+Releases are tagged `vX.Y.Z` using [semantic versioning](https://semver.org/). HACS offers each
+published release to users as an update.
+
+1. Bump the version in **all three** places, which `tests/test_manifest.py` checks are in sync:
+   - `custom_components/rct_bin_collections/manifest.json`;
+   - `custom_components/rct_bin_collections/const.py` (`VERSION`);
+   - `pyproject.toml`.
+2. Move the changes under a new dated heading in `CHANGELOG.md`.
+3. Commit and push to `main`, then wait for the **Validate** workflow to pass.
+4. Publish the release:
+
+   ```bash
+   gh release create vX.Y.Z --title "vX.Y.Z" --notes "<changelog entry>"
+   ```
+
+5. The **Release** workflow checks that the tag matches `manifest.json`, then attaches
+   `rct_bin_collections.zip` for manual installs.
 
 ## Credits and licence
 
