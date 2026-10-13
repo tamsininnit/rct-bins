@@ -23,3 +23,4 @@ All notable changes to this project are documented here. The format follows
   - retries with backoff, and `Retry-After` honoured;
   - a 5-minute floor between fetches and debounced manual refreshes.
 - Redacted diagnostics.
+- Integration icon shipped in `brand/` (served locally by Home Assistant 2026.10+).

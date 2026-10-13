@@ -26,8 +26,6 @@ jobs:
       - uses: hacs/action@main
         with:
           category: integration
-          # Remove once the integration's icon is added to home-assistant/brands.
-          ignore: brands
 
   tests:
     name: Lint, types and tests
